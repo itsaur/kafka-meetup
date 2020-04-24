@@ -1,0 +1,18 @@
+### Insert elastic connector for word count
+POST http://localhost:8088/connectors
+Content-Type: application/json
+
+{
+  "name": "elastic-category-count",
+  "config": {
+    "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+    "type.name": "_doc",
+    "behavior.on.null.values": "delete",
+    "batch.size": "2000",
+    "linger.ms": "3000",
+    "topics": "category-count",
+    "connection.url": "http://elasticsearch:9200",
+    "schema.ignore": "true",
+    "key.ignore": "false"
+  }
+}
